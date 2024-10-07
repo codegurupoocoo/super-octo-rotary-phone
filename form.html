@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        form {
+            width: 300px;
+            margin: 0 auto;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="contactForm">
+        <h2>Contact Us</h2>
+        <input type="text" id="name" placeholder="Your Name">
+        <input type="email" id="email" placeholder="Your Email">
+        <textarea id="message" placeholder="Your Message"></textarea>
+        <button type="submit">Submit</button>
+        <p id="response" class="success"></p>
+    </form>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const response = document.getElementById('response');
+
+            if (!name || !email || !message) {
+                response.textContent = 'Please fill in all fields.';
+                return;
+            }
+
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.match(emailPattern)) {
+                response.textContent = 'Please enter a valid email.';
+                return;
+            }
+
+            console.log('Name:', name);
+            console.log('Email:', email);
+            console.log('Message:', message);
+            response.textContent = 'Thank you for contacting us!';
+        });
+    </script>
+
+</body>
+</html>
